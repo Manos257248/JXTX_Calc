@@ -53,14 +53,15 @@ void CalcDistance(const float *AngleInputData, float *OutputData, unsigned int N
 void CalcIm(const float *ADInputData, float *OutputData, unsigned int Num, float HuoerImax);
 
 void GetDistanceEndTime(const float *DistanceInputData, unsigned int *OutputData, unsigned int Num, unsigned char OpenOrClose);
-void GetOpenOrCloseTime(const float *ADInputData, const float *DistanceInputData, unsigned int *OpenCloseTime, unsigned int Num, unsigned char OpenOrClose);
+void GetOpenTime(const float *ADInputData, const float *DistanceInputData, unsigned int *OpenTime, unsigned int Num);
+void GetCloseTime(const float *ADInputData, const float *DistanceInputData, unsigned int *CloseTime, unsigned int Num);
 void GetTotalDistance(const float *DistanceInputData, float *OutputData, unsigned int Num);
 void GetKaiDistance(const float *DistanceInputData, float *OutputData, unsigned int Num, unsigned char OpenOrClose);
 void OpenOrCloseSpeed(const float *DistanceInputData, float *OutputData, unsigned int Num, unsigned char OpenOrClose);
 void OpenOrCloseMmtSpeed(const float *DistanceInputData, float *OutputData, unsigned int Num, unsigned char OpenOrClose);
 void CloseOverrush(const float *DistanceInputData, float *OutputData, unsigned int Num);
 void ReboundHeight(const float *DistanceInputData, float *OutputData, unsigned int Num);
-void Get_T0(const float *ADInputData, unsigned int *OutputData, unsigned int Num, unsigned char OpenOrClose);
+void Get_CloseT0(const float *ADInputData, unsigned int *OutputData, unsigned int Num);
 void Get_T1(const float *ImInputData, unsigned int *OutputData, unsigned int Num);
 void Get_T2(const float *ImInputData, unsigned int *OutputData, unsigned int Num);
 void Get_T3(const float *ImInputData, unsigned int *OutputData, unsigned int Num);

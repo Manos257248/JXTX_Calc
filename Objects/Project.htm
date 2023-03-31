@@ -3,11 +3,11 @@
 <title>Static Call Graph - [.\Objects\Project.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\Project.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Fri Mar 31 17:26:46 2023
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Fri Mar 31 19:01:31 2023
 <BR><P>
-<H3>Maximum Stack Usage =       8512 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =       8488 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
-__rt_entry_main &rArr; main &rArr; OpenDataShow &rArr; GetOpenOrCloseTime &rArr; GetADStartTime &rArr; GetMmtSpeed &rArr; __aeabi_ddiv
+__rt_entry_main &rArr; main &rArr; OpenDataShow &rArr; GetOpenTime &rArr; GetADStartTime &rArr; GetMmtSpeed &rArr; __aeabi_ddiv
 <P>
 <H3>
 Functions with no stack information
@@ -192,8 +192,8 @@ Global Symbols
 <P><STRONG><a name="[b6]"></a>__rt_entry_postsh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$00000009))
 
 <P><STRONG><a name="[42]"></a>__rt_entry_main</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$0000000D))
-<BR><BR>[Stack]<UL><LI>Max Depth = 8512 + Unknown Stack Size
-<LI>Call Chain = __rt_entry_main &rArr; main &rArr; OpenDataShow &rArr; GetOpenOrCloseTime &rArr; GetADStartTime &rArr; GetMmtSpeed &rArr; __aeabi_ddiv
+<BR><BR>[Stack]<UL><LI>Max Depth = 8488 + Unknown Stack Size
+<LI>Call Chain = __rt_entry_main &rArr; main &rArr; OpenDataShow &rArr; GetOpenTime &rArr; GetADStartTime &rArr; GetMmtSpeed &rArr; __aeabi_ddiv
 </UL>
 <BR>[Calls]<UL><LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exit
 <LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
@@ -409,7 +409,7 @@ Global Symbols
 <LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fsub
 <LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MovingAvgFilter
 </UL>
-<BR>[Called By]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ReboundHeight
+<BR>[Called By]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ReboundHeight
 <LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OpenOrCloseSpeed
 <LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetTotalDistance
 </UL>
@@ -422,12 +422,12 @@ Global Symbols
 <LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fsub
 <LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetAvg
 </UL>
-<BR>[Called By]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OpenDataShow
+<BR>[Called By]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OpenDataShow
 <LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CloseDataShow
 </UL>
 
-<P><STRONG><a name="[53]"></a>CloseDataShow</STRONG> (Thumb, 258 bytes, Stack size 32 bytes, calculate.o(i.CloseDataShow))
-<BR><BR>[Stack]<UL><LI>Max Depth = 8248<LI>Call Chain = CloseDataShow &rArr; GetOpenOrCloseTime &rArr; GetADStartTime &rArr; GetMmtSpeed &rArr; __aeabi_ddiv
+<P><STRONG><a name="[53]"></a>CloseDataShow</STRONG> (Thumb, 252 bytes, Stack size 24 bytes, calculate.o(i.CloseDataShow))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8224<LI>Call Chain = CloseDataShow &rArr; GetCloseTime &rArr; GetADStartTime &rArr; GetMmtSpeed &rArr; __aeabi_ddiv
 </UL>
 <BR>[Calls]<UL><LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OpenOrCloseSpeed
 <LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OpenOrCloseMmtSpeed
@@ -444,9 +444,9 @@ Global Symbols
 <LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetTotalDistance
 <LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetKaiDistance
 <LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetDistanceEndTime
+<LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetCloseTime
 <LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CloseOverrush
 <LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CalcIm
-<LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetOpenOrCloseTime
 </UL>
 <BR>[Called By]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -464,7 +464,7 @@ Global Symbols
 <P><STRONG><a name="[a]"></a>DebugMon_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, stm32f10x_it.o(i.DebugMon_Handler))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_md.o(RESET)
 </UL>
-<P><STRONG><a name="[66]"></a>GetADStartTime</STRONG> (Thumb, 204 bytes, Stack size 8096 bytes, calculate.o(i.GetADStartTime))
+<P><STRONG><a name="[66]"></a>GetADStartTime</STRONG> (Thumb, 202 bytes, Stack size 8096 bytes, calculate.o(i.GetADStartTime))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8168<LI>Call Chain = GetADStartTime &rArr; GetMmtSpeed &rArr; __aeabi_ddiv
 </UL>
 <BR>[Calls]<UL><LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cfrcmple
@@ -472,7 +472,8 @@ Global Symbols
 <LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetAvg
 </UL>
 <BR>[Called By]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_T0
-<LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetOpenOrCloseTime
+<LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetOpenTime
+<LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetCloseTime
 </UL>
 
 <P><STRONG><a name="[52]"></a>GetAvg</STRONG> (Thumb, 64 bytes, Stack size 32 bytes, calculate.o(i.GetAvg))
@@ -482,13 +483,22 @@ Global Symbols
 <LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fdiv
 <LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fadd
 </UL>
-<BR>[Called By]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ReboundHeight
+<BR>[Called By]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ReboundHeight
 <LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_T5
 <LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetTotalDistance
 <LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetKaiDistance
 <LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetADStartTime
 <LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CloseOverrush
 <LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CalcIm
+</UL>
+
+<P><STRONG><a name="[55]"></a>GetCloseTime</STRONG> (Thumb, 64 bytes, Stack size 32 bytes, calculate.o(i.GetCloseTime))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8200<LI>Call Chain = GetCloseTime &rArr; GetADStartTime &rArr; GetMmtSpeed &rArr; __aeabi_ddiv
+</UL>
+<BR>[Calls]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetDistanceEndTime
+<LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetADStartTime
+</UL>
+<BR>[Called By]<UL><LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CloseDataShow
 </UL>
 
 <P><STRONG><a name="[54]"></a>GetDistanceEndTime</STRONG> (Thumb, 212 bytes, Stack size 64 bytes, calculate.o(i.GetDistanceEndTime))
@@ -507,9 +517,10 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OpenOrCloseSpeed
 <LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OpenOrCloseMmtSpeed
+<LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetOpenTime
 <LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetKaiDistance
-<LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OpenDataShow
-<LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetOpenOrCloseTime
+<LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetCloseTime
+<LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OpenDataShow
 <LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CloseDataShow
 </UL>
 
@@ -530,7 +541,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cfcmple
 </UL>
-<BR>[Called By]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ReboundHeight
+<BR>[Called By]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ReboundHeight
 <LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_T4
 <LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetDistanceEndTime
 <LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CloseOverrush
@@ -558,15 +569,13 @@ Global Symbols
 <LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetADStartTime
 </UL>
 
-<P><STRONG><a name="[55]"></a>GetOpenOrCloseTime</STRONG> (Thumb, 130 bytes, Stack size 48 bytes, calculate.o(i.GetOpenOrCloseTime))
-<BR><BR>[Stack]<UL><LI>Max Depth = 8216<LI>Call Chain = GetOpenOrCloseTime &rArr; GetADStartTime &rArr; GetMmtSpeed &rArr; __aeabi_ddiv
+<P><STRONG><a name="[76]"></a>GetOpenTime</STRONG> (Thumb, 64 bytes, Stack size 32 bytes, calculate.o(i.GetOpenTime))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8200<LI>Call Chain = GetOpenTime &rArr; GetADStartTime &rArr; GetMmtSpeed &rArr; __aeabi_ddiv
 </UL>
 <BR>[Calls]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetDistanceEndTime
 <LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetADStartTime
 </UL>
-<BR>[Called By]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OpenDataShow
-<LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CloseDataShow
-<LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<BR>[Called By]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OpenDataShow
 </UL>
 
 <P><STRONG><a name="[56]"></a>GetTotalDistance</STRONG> (Thumb, 78 bytes, Stack size 24 bytes, calculate.o(i.GetTotalDistance))
@@ -583,9 +592,9 @@ Global Symbols
 <P><STRONG><a name="[6c]"></a>GetX</STRONG> (Thumb, 50 bytes, Stack size 32 bytes, calculate.o(i.GetX))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = GetX &rArr; __aeabi_cfcmpeq
 </UL>
-<BR>[Calls]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cfcmpeq
+<BR>[Calls]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cfcmpeq
 </UL>
-<BR>[Called By]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ReboundHeight
+<BR>[Called By]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ReboundHeight
 <LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OpenOrCloseSpeed
 <LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_T5
 <LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_T4
@@ -598,7 +607,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_T1
 </UL>
-<BR>[Called By]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OpenDataShow
+<BR>[Called By]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OpenDataShow
 <LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CloseDataShow
 </UL>
 
@@ -607,7 +616,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_T2
 </UL>
-<BR>[Called By]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OpenDataShow
+<BR>[Called By]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OpenDataShow
 <LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CloseDataShow
 </UL>
 
@@ -616,7 +625,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_T3
 </UL>
-<BR>[Called By]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OpenDataShow
+<BR>[Called By]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OpenDataShow
 <LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CloseDataShow
 </UL>
 
@@ -625,7 +634,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_T4
 </UL>
-<BR>[Called By]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OpenDataShow
+<BR>[Called By]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OpenDataShow
 <LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CloseDataShow
 </UL>
 
@@ -634,7 +643,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetADStartTime
 </UL>
-<BR>[Called By]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OpenDataShow
+<BR>[Called By]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OpenDataShow
 <LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CloseDataShow
 </UL>
 
@@ -645,7 +654,7 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_T2
 <LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_ImT1
-<LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OpenDataShow
+<LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OpenDataShow
 <LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CloseDataShow
 </UL>
 
@@ -658,7 +667,7 @@ Global Symbols
 <LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetMin
 </UL>
 <BR>[Called By]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_ImT2
-<LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OpenDataShow
+<LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OpenDataShow
 <LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CloseDataShow
 </UL>
 
@@ -669,7 +678,7 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_T2
 <LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_ImT3
-<LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OpenDataShow
+<LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OpenDataShow
 <LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CloseDataShow
 </UL>
 
@@ -682,7 +691,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_T5
 <LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_T3
 <LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_ImT4
-<LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OpenDataShow
+<LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OpenDataShow
 <LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CloseDataShow
 </UL>
 
@@ -693,7 +702,7 @@ Global Symbols
 <LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetX
 <LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetAvg
 </UL>
-<BR>[Called By]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OpenDataShow
+<BR>[Called By]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OpenDataShow
 <LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CloseDataShow
 </UL>
 
@@ -719,10 +728,10 @@ Global Symbols
 <P><STRONG><a name="[4]"></a>NMI_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, stm32f10x_it.o(i.NMI_Handler))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_md.o(RESET)
 </UL>
-<P><STRONG><a name="[77]"></a>OpenDataShow</STRONG> (Thumb, 230 bytes, Stack size 32 bytes, calculate.o(i.OpenDataShow))
-<BR><BR>[Stack]<UL><LI>Max Depth = 8248<LI>Call Chain = OpenDataShow &rArr; GetOpenOrCloseTime &rArr; GetADStartTime &rArr; GetMmtSpeed &rArr; __aeabi_ddiv
+<P><STRONG><a name="[78]"></a>OpenDataShow</STRONG> (Thumb, 224 bytes, Stack size 24 bytes, calculate.o(i.OpenDataShow))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8224<LI>Call Chain = OpenDataShow &rArr; GetOpenTime &rArr; GetADStartTime &rArr; GetMmtSpeed &rArr; __aeabi_ddiv
 </UL>
-<BR>[Calls]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ReboundHeight
+<BR>[Calls]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ReboundHeight
 <LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OpenOrCloseSpeed
 <LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OpenOrCloseMmtSpeed
 <LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_T5
@@ -735,9 +744,9 @@ Global Symbols
 <LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_ImT3
 <LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_ImT2
 <LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_ImT1
+<LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetOpenTime
 <LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetDistanceEndTime
 <LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CalcIm
-<LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetOpenOrCloseTime
 </UL>
 <BR>[Called By]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -749,11 +758,11 @@ Global Symbols
 <LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetMmtSpeed
 <LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetDistanceEndTime
 </UL>
-<BR>[Called By]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OpenDataShow
+<BR>[Called By]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OpenDataShow
 <LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CloseDataShow
 </UL>
 
-<P><STRONG><a name="[58]"></a>OpenOrCloseSpeed</STRONG> (Thumb, 308 bytes, Stack size 56 bytes, calculate.o(i.OpenOrCloseSpeed))
+<P><STRONG><a name="[58]"></a>OpenOrCloseSpeed</STRONG> (Thumb, 302 bytes, Stack size 56 bytes, calculate.o(i.OpenOrCloseSpeed))
 <BR><BR>[Stack]<UL><LI>Max Depth = 192<LI>Call Chain = OpenOrCloseSpeed &rArr; GetDistanceEndTime &rArr; GetMmtSpeed &rArr; __aeabi_ddiv
 </UL>
 <BR>[Calls]<UL><LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
@@ -769,14 +778,14 @@ Global Symbols
 <LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetDistanceEndTime
 <LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CalcAngle
 </UL>
-<BR>[Called By]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OpenDataShow
+<BR>[Called By]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OpenDataShow
 <LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CloseDataShow
 </UL>
 
 <P><STRONG><a name="[b]"></a>PendSV_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, stm32f10x_it.o(i.PendSV_Handler))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_md.o(RESET)
 </UL>
-<P><STRONG><a name="[78]"></a>ReboundHeight</STRONG> (Thumb, 80 bytes, Stack size 32 bytes, calculate.o(i.ReboundHeight))
+<P><STRONG><a name="[79]"></a>ReboundHeight</STRONG> (Thumb, 80 bytes, Stack size 32 bytes, calculate.o(i.ReboundHeight))
 <BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = ReboundHeight &rArr; CalcAngle &rArr; MovingAvgFilter &rArr; __aeabi_fdiv
 </UL>
 <BR>[Calls]<UL><LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fsub
@@ -785,7 +794,7 @@ Global Symbols
 <LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetAvg
 <LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CalcAngle
 </UL>
-<BR>[Called By]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OpenDataShow
+<BR>[Called By]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OpenDataShow
 </UL>
 
 <P><STRONG><a name="[9]"></a>SVC_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, stm32f10x_it.o(i.SVC_Handler))
@@ -797,26 +806,20 @@ Global Symbols
 <P><STRONG><a name="[38]"></a>SystemInit</STRONG> (Thumb, 78 bytes, Stack size 8 bytes, system_stm32f10x.o(i.SystemInit))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = SystemInit &rArr; SetSysClock &rArr; SetSysClockTo72
 </UL>
-<BR>[Calls]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetSysClock
+<BR>[Calls]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetSysClock
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_md.o(.text)
 </UL>
 <P><STRONG><a name="[8]"></a>UsageFault_Handler</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f10x_it.o(i.UsageFault_Handler))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_md.o(RESET)
 </UL>
-<P><STRONG><a name="[43]"></a>main</STRONG> (Thumb, 196 bytes, Stack size 264 bytes, main.o(i.main))
-<BR><BR>[Stack]<UL><LI>Max Depth = 8512<LI>Call Chain = main &rArr; OpenDataShow &rArr; GetOpenOrCloseTime &rArr; GetADStartTime &rArr; GetMmtSpeed &rArr; __aeabi_ddiv
+<P><STRONG><a name="[43]"></a>main</STRONG> (Thumb, 170 bytes, Stack size 264 bytes, main.o(i.main))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8488<LI>Call Chain = main &rArr; OpenDataShow &rArr; GetOpenTime &rArr; GetADStartTime &rArr; GetMmtSpeed &rArr; __aeabi_ddiv
 </UL>
-<BR>[Calls]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OpenDataShow
-<LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetOpenOrCloseTime
+<BR>[Calls]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OpenDataShow
 <LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CloseDataShow
-<LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pointer
 </UL>
 <BR>[Called By]<UL><LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
-</UL>
-
-<P><STRONG><a name="[7b]"></a>pointer</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, main.o(i.pointer))
-<BR><BR>[Called By]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
 <P><STRONG><a name="[75]"></a>__aeabi_d2f</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, d2f.o(x$fpl$d2f))
@@ -958,7 +961,7 @@ Global Symbols
 <LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__fpl_fnaninf
 </UL>
 
-<P><STRONG><a name="[76]"></a>__aeabi_cfcmpeq</STRONG> (Thumb, 0 bytes, Stack size 16 bytes, feqf.o(x$fpl$feqf))
+<P><STRONG><a name="[77]"></a>__aeabi_cfcmpeq</STRONG> (Thumb, 0 bytes, Stack size 16 bytes, feqf.o(x$fpl$feqf))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = __aeabi_cfcmpeq
 </UL>
 <BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetX
@@ -1035,7 +1038,7 @@ Global Symbols
 <P><STRONG><a name="[4e]"></a>__aeabi_fsub</STRONG> (Thumb, 0 bytes, Stack size 16 bytes, faddsub_clz.o(x$fpl$fsub))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = __aeabi_fsub
 </UL>
-<BR>[Called By]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ReboundHeight
+<BR>[Called By]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ReboundHeight
 <LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OpenOrCloseSpeed
 <LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetTotalDistance
 <LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetMmtSpeed
@@ -1053,18 +1056,18 @@ Global Symbols
 <H3>
 Local Symbols
 </H3>
-<P><STRONG><a name="[79]"></a>SetSysClock</STRONG> (Thumb, 8 bytes, Stack size 8 bytes, system_stm32f10x.o(i.SetSysClock))
+<P><STRONG><a name="[7a]"></a>SetSysClock</STRONG> (Thumb, 8 bytes, Stack size 8 bytes, system_stm32f10x.o(i.SetSysClock))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = SetSysClock &rArr; SetSysClockTo72
 </UL>
-<BR>[Calls]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetSysClockTo72
+<BR>[Calls]<UL><LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetSysClockTo72
 </UL>
 <BR>[Called By]<UL><LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemInit
 </UL>
 
-<P><STRONG><a name="[7a]"></a>SetSysClockTo72</STRONG> (Thumb, 214 bytes, Stack size 12 bytes, system_stm32f10x.o(i.SetSysClockTo72))
+<P><STRONG><a name="[7b]"></a>SetSysClockTo72</STRONG> (Thumb, 214 bytes, Stack size 12 bytes, system_stm32f10x.o(i.SetSysClockTo72))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = SetSysClockTo72
 </UL>
-<BR>[Called By]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetSysClock
+<BR>[Called By]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetSysClock
 </UL>
 
 <P><STRONG><a name="[86]"></a>_dadd1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, daddsub_clz.o(x$fpl$dadd), UNUSED)

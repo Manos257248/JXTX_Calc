@@ -29,3 +29,4 @@
 .\objects\main.o: .\Library\stm32f10x_wwdg.h
 .\objects\main.o: .\Library\misc.h
 .\objects\main.o: User\Calculate.h
+.\objects\main.o: F:\Keil525\ARM\ARMCC\Bin\..\include\stdio.h

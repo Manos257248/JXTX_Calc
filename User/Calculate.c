@@ -167,9 +167,9 @@ void GetADStartTime(const float *ADInputData, unsigned int *OutputData, unsigned
 
 		}
 	}
-	else							// Close合闸
+	else							//Close合闸
 	{
-		for(i = 0; i < Num; i ++)
+		for(i = 100; i < 1000; i ++)
 		{
 			if(ImSpeed[i] > 0)
 			{
@@ -185,7 +185,6 @@ void GetADStartTime(const float *ADInputData, unsigned int *OutputData, unsigned
 					}
 					else Cnt = 0;
 				}
-				else Cnt = 0;
 			}
 			else Cnt = 0;
 		}
@@ -273,34 +272,37 @@ void GetDistanceEndTime(const float *DistanceInputData, unsigned int *OutputData
 }
 
 /******************
-*分合闸时间（下标）
+*分闸时间（下标）
 *
 *
 ******************/
-void GetOpenOrCloseTime(const float *ADInputData, const float *DistanceInputData, unsigned int *OpenCloseTime, unsigned int Num, unsigned char OpenOrClose)
+void GetOpenTime(const float *ADInputData, const float *DistanceInputData, unsigned int *OpenTime, unsigned int Num)
+{
+	unsigned int GangfenTime = 0;
+	unsigned int ADTime = 0;
+	unsigned int Time = 0;
+
+	GetDistanceEndTime(DistanceInputData, &GangfenTime, Num, Open);
+	GetADStartTime(ADInputData, &ADTime, Num, Open);
+	Time = GangfenTime - ADTime;
+	*OpenTime = Time;
+}
+
+/******************
+*合闸时间（下标）
+*
+*
+******************/
+void GetCloseTime(const float *ADInputData, const float *DistanceInputData, unsigned int *CloseTime, unsigned int Num)
 {
 	unsigned int GangheTime = 0;
-	unsigned int GangfenTime = 0;
-	unsigned int OpenTime = 0;
-	unsigned int CloseTime = 0;
 	unsigned int ADTime = 0;
-	if(OpenOrClose == Open)	//分闸时间
-	{
-		GetDistanceEndTime(DistanceInputData, &GangfenTime, Num, Open);
-		GetADStartTime(ADInputData, &ADTime, Num, Open);
-		OpenTime = GangfenTime - ADTime;
-	}
-	else			//
-	{
-		GetDistanceEndTime(DistanceInputData, &GangheTime, Num, Close);
-		GetADStartTime(ADInputData, &ADTime, Num, Close);
-		CloseTime = GangheTime - ADTime;
-	}
-	if(OpenOrClose == Open)
-		*OpenCloseTime = OpenTime;
-	else
-		*OpenCloseTime = CloseTime;
+	unsigned int Time = 0;
 
+	GetDistanceEndTime(DistanceInputData, &GangheTime, Num, Close);
+	GetADStartTime(ADInputData, &ADTime, Num, Close);
+	Time = GangheTime - ADTime;
+	*CloseTime = Time;
 }
 
 /****************************
@@ -361,7 +363,7 @@ void GetKaiDistance(const float *DistanceInputData, float *OutputData, unsigned 
 void OpenOrCloseSpeed(const float *DistanceInputData, float *OutputData, unsigned int Num, unsigned char OpenOrClose)
 {
 	unsigned int Time = 0;
-	float gangheData = 0.0;
+//	float gangheData = 0.0;
 	float Angle;
 	unsigned int Index;
 	unsigned short i;
@@ -594,7 +596,7 @@ void OpenDataShow(const float *DistanceInputData, const float *ADInputData, unsi
 	CalcIm(ADInputData, Contain2, Num, HuoerImax);
 	
 	GetDistanceEndTime(DistanceInputData, &(OpenGate->DistanceEndTime), Num, Open);
-	GetOpenOrCloseTime(ADInputData, DistanceInputData, &(OpenGate->OpenTime), Num, Open);
+	GetOpenTime(ADInputData, DistanceInputData, &(OpenGate->OpenTime), Num);
 	OpenOrCloseSpeed(DistanceInputData, &(OpenGate->OpenSpeed), Num, Open);
 	ReboundHeight(DistanceInputData, &(OpenGate->ReboundHeight), Num);
 	OpenOrCloseMmtSpeed(DistanceInputData, &(OpenGate->OpenMmtSpeed), Num, Open);
@@ -621,7 +623,7 @@ void CloseDataShow(const float *DistanceInputData, const float *ADInputData, uns
 	CalcIm(ADInputData, Contain2, Num, HuoerImax);
 	
 	GetDistanceEndTime(DistanceInputData, &(CloseGate->DistanceEndTime), Num, Close);
-	GetOpenOrCloseTime(ADInputData, DistanceInputData, &(CloseGate->CloseTime), Num, Close);
+	GetCloseTime(ADInputData, DistanceInputData, &(CloseGate->CloseTime), Num);
 	GetTotalDistance(DistanceInputData, &(CloseGate->CloseTotalDistance), Num);
 	GetKaiDistance(DistanceInputData, &(CloseGate->CloseKaiDistance), Num, Close);
 	OpenOrCloseSpeed(DistanceInputData, &(CloseGate->CloseSpeed), Num, Close);
@@ -638,3 +640,4 @@ void CloseDataShow(const float *DistanceInputData, const float *ADInputData, uns
 	Get_ImT3(Contain2, &(CloseGate->Get_ImT3), Num);
 	Get_ImT4(Contain2, &(CloseGate->Get_ImT4), Num);
 }
+

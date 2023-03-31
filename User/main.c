@@ -1,5 +1,6 @@
 #include "stm32f10x.h"                  // Device header
 #include "Calculate.h"
+#include <stdio.h>
 
 //unsigned char Open = 0;
 //unsigned char Close = 1;
@@ -421,9 +422,12 @@ float HeIm[2000] =
 16424,16424,16424,16424,16424,16425,16425,16425,16425,16426,16425,16425,16426,16427,16427,16426,16427,16427,16428,16428
 };
 
-void pointer(const float *input, float *output)
+void pointer(float *output, unsigned char in)
 {
-	*output = *input;
+	if(in == 0)
+		*output = 333;
+	else
+		*output = 666;
 }
 
 
@@ -490,11 +494,10 @@ int main(void)
 //		Im[x] = 20;
 //	}
 
-	GetOpenOrCloseTime(FenIm, FenDistance, &testint, 2000, 0);
+//	GetCloseTime(FenIm, FenDistance, &testint, 2000);
 
 	OpenGateTypedef OpenGate;
-//	MovingAvgFilter(FenDistance, &(OpenGate.OpenSpeed), 2000, 61);
-OpenDataShow(FenDistance, FenIm, 2000, 20, &OpenGate);
+	OpenDataShow(FenDistance, FenIm, 2000, 20, &OpenGate);
 	unsigned int a = OpenGate.DistanceEndTime;		//光栅尺结束时刻下标
 	unsigned int b = OpenGate.OpenTime;				//分闸时间
 	float c = OpenGate.OpenSpeed;			//分闸速度
@@ -511,8 +514,8 @@ OpenDataShow(FenDistance, FenIm, 2000, 20, &OpenGate);
 	float n = OpenGate.Get_ImT3;				//L3脱扣机构运动时刻动作电流
 	float o = OpenGate.Get_ImT4;				//L4辅助开关转换时刻动作电流
 
-CloseGateTypedef CloseGate;
-CloseDataShow(HeDistance, HeIm, 2000, 20, &CloseGate);
+	CloseGateTypedef CloseGate;
+	CloseDataShow(HeDistance, HeIm, 2000, 20, &CloseGate);
 	unsigned int A = CloseGate.DistanceEndTime;		//光栅尺结束时刻下标
 	unsigned int B = CloseGate.CloseTime;		//合闸时间
 	float C = CloseGate.CloseTotalDistance;	//合闸总行程
@@ -531,5 +534,5 @@ CloseDataShow(HeDistance, HeIm, 2000, 20, &CloseGate);
 	float P = CloseGate.Get_ImT3;				//L3脱扣机构运动时刻动作电流
 	float Q = CloseGate.Get_ImT4;				//L4辅助开关转换时刻动作电流
 
-pointer(&testfloat, &N);
+//pointer(&testfloat, 1);
 }

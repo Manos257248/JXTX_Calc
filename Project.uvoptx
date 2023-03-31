@@ -152,25 +152,25 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>304</LineNumber>
+          <LineNumber>538</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134219928</Address>
+          <Address>134221918</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>.\User\Calculate.c</Filename>
+          <Filename>.\User\main.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\Project\User/Calculate.c\304</Expression>
+          <Expression>\\Project\User/main.c\538</Expression>
         </Bp>
         <Bp>
           <Number>1</Number>
           <Type>0</Type>
-          <LineNumber>291</LineNumber>
+          <LineNumber>184</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134219870</Address>
+          <Address>134219138</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -179,46 +179,46 @@
           <BreakIfRCount>1</BreakIfRCount>
           <Filename>.\User\Calculate.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\Project\User/Calculate.c\291</Expression>
+          <Expression>\\Project\User/Calculate.c\184</Expression>
         </Bp>
         <Bp>
           <Number>2</Number>
           <Type>0</Type>
-          <LineNumber>535</LineNumber>
+          <LineNumber>149</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134221960</Address>
+          <Address>134219004</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>.\User\main.c</Filename>
+          <Filename>.\User\Calculate.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\Project\User/main.c\535</Expression>
+          <Expression>\\Project\User/Calculate.c\149</Expression>
         </Bp>
         <Bp>
           <Number>3</Number>
           <Type>0</Type>
-          <LineNumber>497</LineNumber>
+          <LineNumber>306</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134221796</Address>
+          <Address>134219300</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>.\User\main.c</Filename>
+          <Filename>.\User\Calculate.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\Project\User/main.c\497</Expression>
+          <Expression>\\Project\User/Calculate.c\306</Expression>
         </Bp>
         <Bp>
           <Number>4</Number>
           <Type>0</Type>
-          <LineNumber>299</LineNumber>
+          <LineNumber>184</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134219916</Address>
+          <Address>134219156</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -227,23 +227,7 @@
           <BreakIfRCount>1</BreakIfRCount>
           <Filename>.\User\Calculate.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\Project\User/Calculate.c\299</Expression>
-        </Bp>
-        <Bp>
-          <Number>5</Number>
-          <Type>0</Type>
-          <LineNumber>286</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134219832</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>.\User\Calculate.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\Project\User/Calculate.c\286</Expression>
+          <Expression>\\Project\User/Calculate.c\184</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
@@ -270,12 +254,22 @@
         <Ww>
           <count>4</count>
           <WinNumber>1</WinNumber>
-          <ItemText>OpenTime,0x0A</ItemText>
+          <ItemText>GangfenTime,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>5</count>
           <WinNumber>1</WinNumber>
-          <ItemText>CloseTime,0x0A</ItemText>
+          <ItemText>GangheTime,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>6</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>*OutputData,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>7</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>ADTime,0x0A</ItemText>
         </Ww>
       </WatchWindow1>
       <Tracepoint>
@@ -284,7 +278,7 @@
       <DebugFlag>
         <trace>0</trace>
         <periodic>1</periodic>
-        <aLwin>1</aLwin>
+        <aLwin>0</aLwin>
         <aCover>0</aCover>
         <aSer1>0</aSer1>
         <aSer2>0</aSer2>
