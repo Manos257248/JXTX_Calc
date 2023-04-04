@@ -7,7 +7,7 @@
 float ItineraryCoordF[2000], Im[2000];
 float testfloat = 1110;
 float Testfloat[2000];//, t[2000], v[2000];
-unsigned int *Testint;
+unsigned int Testint;
 unsigned int testint = 0;
 float FenIm[2000] = {
 15846,15849,15845,15849,15849,15850,15849,15851,15851,15851,15852,15852,15852,15853,15853,15853,15854,15854,15854,15855,
@@ -215,8 +215,7 @@ float FenDistance[2000] = {
 9277,9277,9277,9277,9277,9277,9277,9277,9277,9277,9277,9277,9277,9277,9277,9277,9277,9277,9277,9277
 };
 
-float HeDistance[2000] = 
-{
+float HeDistance[2000] = {
 10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,
 10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,
 10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,
@@ -318,8 +317,8 @@ float HeDistance[2000] =
 10692,10692,10692,10692,10692,10692,10692,10692,10692,10692,10692,10692,10692,10692,10692,10692,10692,10692,10692,10692,
 10692,10692,10692,10692,10692,10692,10692,10692,10692,10692,10692,10692,10692,10692,10692,10692,10692,10692,10692,10692
 };
-float HeIm[2000] = 
-{
+float HeIm[2000] = {
+	
 16447,16449,16445,16449,16449,16447,16447,16447,16447,16447,16448,16448,16447,16448,16448,16448,16448,16448,16449,16449,
 16448,16449,16449,16449,16450,16450,16450,16451,16451,16451,16452,16452,16452,16453,16453,16453,16454,16454,16454,16455,
 16455,16456,16456,16457,16457,16458,16458,16458,16458,16458,16458,16458,16458,16458,16458,16458,16458,16459,16458,16458,
@@ -494,45 +493,15 @@ int main(void)
 //		Im[x] = 20;
 //	}
 
-//	GetCloseTime(FenIm, FenDistance, &testint, 2000);
 
 	OpenGateTypedef OpenGate;
-	OpenDataShow(FenDistance, FenIm, 2000, 20, &OpenGate);
-	unsigned int a = OpenGate.DistanceEndTime;		//光栅尺结束时刻下标
-	unsigned int b = OpenGate.OpenTime;				//分闸时间
-	float c = OpenGate.OpenSpeed;			//分闸速度
-	float d = OpenGate.ReboundHeight;		//反弹高度
-	float e = OpenGate.OpenMmtSpeed;			//瞬时速度
-	unsigned int f = OpenGate.T0;			//T0线圈得电时刻
-	unsigned int g = OpenGate.T1;			//T1铁芯始动时
-	unsigned int h = OpenGate.T2;			//T2铁芯撞击弯板时刻
-	unsigned int i = OpenGate.T3;			//T3脱扣半轴脱离铁芯时刻
-	unsigned int j = OpenGate.T4;			//T4铁芯达到最大行程时刻
-	unsigned int k = OpenGate.T5;			//T5动作结束时刻塘
-	float l = OpenGate.Get_ImT1;				//L1铁芯始动时刻动作电流
-	float m = OpenGate.Get_ImT2;				//L2撞击弯板时刻动作电流
-	float n = OpenGate.Get_ImT3;				//L3脱扣机构运动时刻动作电流
-	float o = OpenGate.Get_ImT4;				//L4辅助开关转换时刻动作电流
+	OpenDataShow(FenDistance, FenIm, 2000, 15, &OpenGate);
 
 	CloseGateTypedef CloseGate;
-	CloseDataShow(HeDistance, HeIm, 2000, 20, &CloseGate);
-	unsigned int A = CloseGate.DistanceEndTime;		//光栅尺结束时刻下标
-	unsigned int B = CloseGate.CloseTime;		//合闸时间
-	float C = CloseGate.CloseTotalDistance;	//合闸总行程
-	float D = CloseGate.CloseKaiDistance;		//合闸开距
-	float E = CloseGate.CloseSpeed;			//合闸速度
-	float F = CloseGate.CloseMmtSpeed;		//瞬时速度
-	float G = CloseGate.CloseOverrush;		//合闸过冲
-	unsigned int H = CloseGate.T0;			//T0线圈得电时刻
-	unsigned int I = CloseGate.T1;			//T1铁芯始动时
-	unsigned int J = CloseGate.T2;			//T2铁芯撞击弯板时刻
-	unsigned int K = CloseGate.T3;			//T3脱扣半轴脱离铁芯时刻
-	unsigned int L = CloseGate.T4;			//T4铁芯达到最大行程时刻
-	unsigned int M = CloseGate.T5;			//T5动作结束时刻塘
-	float N = CloseGate.Get_ImT1;				//L1铁芯始动时刻动作电流
-	float O = CloseGate.Get_ImT2;				//L2撞击弯板时刻动作电流
-	float P = CloseGate.Get_ImT3;				//L3脱扣机构运动时刻动作电流
-	float Q = CloseGate.Get_ImT4;				//L4辅助开关转换时刻动作电流
+	CloseDataShow(HeDistance, HeIm, 2000, 15, &CloseGate);
 
-//pointer(&testfloat, 1);
+//	OpenOrCloseSpeed(FenDistance, &testfloat, 2000, 0);
+//	ReboundHeight(DistanceInputData, &(OpenGate->ReboundHeight), Num);
+//	OpenOrCloseMmtSpeed(DistanceInputData, &(OpenGate->OpenMmtSpeed), Num, Open);
+//pointer(&testfloat, 1);0
 }

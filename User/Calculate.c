@@ -1,4 +1,4 @@
-//#include <string.h>
+#include <string.h>
 #include "Calculate.h"
 //#include <stdio.h>
 //#include <math.h>
@@ -37,7 +37,9 @@ void GetX(const float *InputData, unsigned int *OutputData, unsigned int FromDat
 	unsigned short i;
 	for(i = FromData; i < ToData; i ++)
 	{
-		if(InputData[i] == Value)
+		if(InputData[i] == Value
+			|| (InputData[i] < Value && InputData[i + 1] > Value)
+			|| (InputData[i] > Value && InputData[i + 1] < Value))
 		{
 			*OutputData = i;
 			break;
@@ -84,7 +86,7 @@ void GetAvg(const float *InputData, float *OutputData, unsigned int FromNum, uns
 	{
 		Sum = Sum + InputData[i];
 	}
-	*OutputData = Sum / (ToNum - FromNum);
+	*OutputData = Sum / (ToNum - FromNum + 1);
 }
 
 //在Num个坐标点中，输出瞬时速度
@@ -124,7 +126,7 @@ void GetMin(const float *InputData, float *OutputData, unsigned int FromNum, uns
 {
 //	memcpy(Input, InputData, 8000);
 	unsigned short i;
-	float Data = InputData[0];
+	float Data = InputData[FromNum];
 	for(i = FromNum; i < ToNum; i ++)
 	{
 		if(Data > InputData[i])
@@ -272,20 +274,20 @@ void GetDistanceEndTime(const float *DistanceInputData, unsigned int *OutputData
 }
 
 /******************
-*分闸时间（下标）
+*分合闸时间（下标）
 *
 *
 ******************/
-void GetOpenTime(const float *ADInputData, const float *DistanceInputData, unsigned int *OpenTime, unsigned int Num)
+void GetOpenCloseTime(const float *ADInputData, const float *DistanceInputData, unsigned int *OpenCloseTime, unsigned int Num, unsigned char OpenOrClose)
 {
-	unsigned int GangfenTime = 0;
+	unsigned int GangTime = 0;
 	unsigned int ADTime = 0;
 	unsigned int Time = 0;
 
-	GetDistanceEndTime(DistanceInputData, &GangfenTime, Num, Open);
-	GetADStartTime(ADInputData, &ADTime, Num, Open);
-	Time = GangfenTime - ADTime;
-	*OpenTime = Time;
+	GetDistanceEndTime(DistanceInputData, &GangTime, Num, OpenOrClose);
+	GetADStartTime(ADInputData, &ADTime, Num, OpenOrClose);
+	Time = GangTime - ADTime;
+	*OpenCloseTime = Time;
 }
 
 /******************
@@ -293,17 +295,17 @@ void GetOpenTime(const float *ADInputData, const float *DistanceInputData, unsig
 *
 *
 ******************/
-void GetCloseTime(const float *ADInputData, const float *DistanceInputData, unsigned int *CloseTime, unsigned int Num)
-{
-	unsigned int GangheTime = 0;
-	unsigned int ADTime = 0;
-	unsigned int Time = 0;
+//void GetCloseTime(const float *ADInputData, const float *DistanceInputData, unsigned int *CloseTime, unsigned int Num)
+//{
+//	unsigned int GangheTime = 0;
+//	unsigned int ADTime = 0;
+//	unsigned int Time = 0;
 
-	GetDistanceEndTime(DistanceInputData, &GangheTime, Num, Close);
-	GetADStartTime(ADInputData, &ADTime, Num, Close);
-	Time = GangheTime - ADTime;
-	*CloseTime = Time;
-}
+//	GetDistanceEndTime(DistanceInputData, &GangheTime, Num, Close);
+//	GetADStartTime(ADInputData, &ADTime, Num, Close);
+//	Time = GangheTime - ADTime;
+//	*CloseTime = Time;
+//}
 
 /****************************
 *合闸总行程 
@@ -339,20 +341,16 @@ void GetKaiDistance(const float *DistanceInputData, float *OutputData, unsigned 
 	unsigned int gangheTime = 0;
 	float gangheData = 0.0;
 	float AvgFrist20 = 0.0;
-	unsigned short i;
-	for(i = 0; i < Num; i ++)
-	{
-		Contain1[i] = (DistanceInputData[i] - 10000) / 2048 /4 * 360;	//每时刻角度
-	}
+//	unsigned short i;
+//	for(i = 0; i < Num; i ++)
+//	{
+//		Contain1[i] = (DistanceInputData[i] - 10000) / 2048 /4 * 360;	//每时刻角度
+//	}
+	CalcAngle(DistanceInputData, Contain1, Num, OpenOrClose);
 	GetDistanceEndTime(DistanceInputData, &gangheTime, Num, OpenOrClose);
 	gangheData = Contain1[gangheTime];
-//	for(i = 0; i < 20; i ++)
-//	{
-//		Contain2[i] = Contain1[i];
-//	}
 	GetAvg(Contain1, &AvgFrist20, 0, 19);	//[0] ~ [19]
 	*OutputData = gangheData - AvgFrist20;
-	
 }
 
 /*********************
@@ -363,32 +361,30 @@ void GetKaiDistance(const float *DistanceInputData, float *OutputData, unsigned 
 void OpenOrCloseSpeed(const float *DistanceInputData, float *OutputData, unsigned int Num, unsigned char OpenOrClose)
 {
 	unsigned int Time = 0;
-//	float gangheData = 0.0;
 	float Angle;
 	unsigned int Index;
-	unsigned short i;
 //	MovingAvgFilter(DistanceInputData, Contain2, Num, 61);				//滤波
-	for(i = 0; i < Num; i ++)
-		Contain1[i] = (DistanceInputData[i] - 10000) / 2048 /4 * 360;	//每时刻角度
+//	for(i = 0; i < Num; i ++)
+//		Contain1[i] = (Contain2[i] - 10000) / 2048 /4 * 360;			//每时刻角度
 	if(OpenOrClose == Open)
-	{
-		GetDistanceEndTime(DistanceInputData, &Time, Num, Close);		//刚合时间
-//		gangheData = Contain1[Time];									//刚合数据
-		CalcAngle(Contain1, Contain2, Num, Close);						//每时刻数据转换为每时刻角度
-		Angle = Contain2[Time] - 3.5;
-		GetX(Contain2, &Index, 0, Num, Angle);
-		*OutputData = 3.5 / (Time - Index);								//合闸速度
-	}
-	else
 	{
 		GetDistanceEndTime(DistanceInputData, &Time, Num, Open);		//刚分时间
 //		gangheData = Contain1[Time];									//刚分数据
-		CalcAngle(Contain1, Contain2, Num, Open);						//每时刻的数据转换为每时刻的角度
-		Angle = Contain2[Time] + 6.5;
-		GetX(Contain2, &Index, 0, Num, Angle);
-		*OutputData = 6.5 / (Index - Time);								//分闸速度
-
+		CalcAngle(DistanceInputData, Contain1, Num, Open);				//每时刻的数据转换为每时刻的角度
+		Angle = Contain1[Time] + 6.5;
+		GetX(Contain1, &Index, 0, Num, Angle);
+		*OutputData = 6.5 / (Time - Index);								//分闸速度
 	}
+	else
+	{
+		GetDistanceEndTime(DistanceInputData, &Time, Num, Close);		//刚合时间
+//		gangheData = Contain1[Time];									//刚合数据
+		CalcAngle(DistanceInputData, Contain1, Num, Close);						//每时刻数据转换为每时刻角度
+		Angle = Contain1[Time] - 3.5;
+		GetX(Contain1, &Index, 0, Num, Angle);
+		*OutputData = 3.5 / (Time - Index);								//合闸速度
+	}
+
 }
 
 /************************
@@ -399,21 +395,24 @@ void OpenOrCloseSpeed(const float *DistanceInputData, float *OutputData, unsigne
 void OpenOrCloseMmtSpeed(const float *DistanceInputData, float *OutputData, unsigned int Num, unsigned char OpenOrClose)
 {
 	unsigned int Time;
+//	float Angle[2000];
 	if(OpenOrClose == Open)			//分闸
 	{
 		GetDistanceEndTime(DistanceInputData, &Time, Num, Open);
-		MovingAvgFilter(DistanceInputData, Contain1, Num, 31);
-		GetMmtSpeed(Contain1, Contain2, Num);
-		MovingAvgFilter(Contain2, Contain1, Num, 31);	//滤波后的瞬时速度
+//		MovingAvgFilter(DistanceInputData, Contain1, Num, 31);
+		CalcAngle(DistanceInputData, Contain2, Num, Open);
+		GetMmtSpeed(Contain2, Contain1, Num);
+//		MovingAvgFilter(Contain1, Contain2, Num, 31);	//滤波后的瞬时速度
 		*OutputData = Contain1[Time];
 
 	}
 	else							//合闸
 	{
 		GetDistanceEndTime(DistanceInputData, &Time, Num, Close);
-		MovingAvgFilter(DistanceInputData, Contain1, Num, 61);
-		GetMmtSpeed(Contain1, Contain2, Num);
-		MovingAvgFilter(Contain2, Contain1, Num, 61);	//滤波后的瞬时速度
+//		MovingAvgFilter(DistanceInputData, Contain1, Num, 61);
+		CalcAngle(DistanceInputData, Contain2, Num, Close);
+		GetMmtSpeed(Contain2, Contain1, Num);
+//		MovingAvgFilter(Contain1, Contain2, Num, 61);	//滤波后的瞬时速度
 		*OutputData = Contain1[Time];
 	}
 }
@@ -447,7 +446,8 @@ void ReboundHeight(const float *DistanceInputData, float *OutputData, unsigned i
 	CalcAngle(DistanceInputData, Contain1, Num, Open);
 	GetAvg(Contain1, &Avglast20, Num - 20, Num - 1);	//[1980] ~ [1999]
 	GetX(Contain1, &ReboundTime, 0, Num, Avglast20);
-	GetMax(Contain1, &Max, ReboundTime, Num);
+//	GetMax(Contain1, &Max, ReboundTime, Num);
+	GetMin(Contain1, &Max, ReboundTime, Num);
 	*OutputData = Max - Avglast20; 
 }
 
@@ -505,7 +505,7 @@ void Get_T3(const float *ImInputData, unsigned int *OutputData, unsigned int Num
 {
 	unsigned int T4;
 	Get_T4(ImInputData, &T4, Num);
-	*OutputData = T4 - 30;
+	*OutputData = T4 - 30 + 1;
 }
 
 /*************************
@@ -534,6 +534,14 @@ void Get_T5(const float *ImInputData, unsigned int *OutputData, unsigned int Num
 //		Contain1[i] = ImInputData[i + Num - 600];			//后600个Im数据转到Contain1
 	GetAvg(ImInputData, &Avglast600, Num - 600, Num - 1);	//后600个Im数据[1400] ~ [1999]的平均值
 	GetX(ImInputData, OutputData, T4, Num, Avglast600);
+//	for(i = T4; i < Num; i ++)
+//	{
+//		if(ImInputData[i] <= Avglast600)
+//		{
+//			*OutputData = i;
+//			break;
+//		}
+//	}
 }
 
 /**************************
@@ -541,11 +549,13 @@ void Get_T5(const float *ImInputData, unsigned int *OutputData, unsigned int Num
 *
 *
 ***************************/
-void Get_ImT1(const float *ImInputData, float *OutputData, unsigned int Num)
+void Get_ImT1(const float *ImInputData, float *OutputData, unsigned int Num, float HuoerImax)
 {
 	unsigned int T1;
 	Get_T1(ImInputData, &T1, Num);
-	*OutputData = ImInputData[T1];
+	MovingAvgFilter(ImInputData, Contain2, Num, 61);
+	CalcIm(ImInputData, Contain1, Num, HuoerImax);
+	*OutputData = Contain1[T1];
 }
 
 /**************************
@@ -553,11 +563,14 @@ void Get_ImT1(const float *ImInputData, float *OutputData, unsigned int Num)
 *
 *
 ***************************/
-void Get_ImT2(const float *ImInputData, float *OutputData, unsigned int Num)
+void Get_ImT2(const float *ImInputData, float *OutputData, unsigned int Num, float HuoerImax)
 {
 	unsigned int T2;
 	Get_T2(ImInputData, &T2, Num);
-	*OutputData = ImInputData[T2];
+		MovingAvgFilter(ImInputData, Contain2, Num, 61);
+
+	CalcIm(ImInputData, Contain1, Num, HuoerImax);
+	*OutputData = Contain1[T2];
 }
 
 /**************************
@@ -565,11 +578,14 @@ void Get_ImT2(const float *ImInputData, float *OutputData, unsigned int Num)
 *
 *
 ***************************/
-void Get_ImT3(const float *ImInputData, float *OutputData, unsigned int Num)
+void Get_ImT3(const float *ImInputData, float *OutputData, unsigned int Num, float HuoerImax)
 {
 	unsigned int T3;
 	Get_T3(ImInputData, &T3, Num);
-	*OutputData = ImInputData[T3];
+		MovingAvgFilter(ImInputData, Contain2, Num, 61);
+
+	CalcIm(ImInputData, Contain1, Num, HuoerImax);
+	*OutputData = Contain1[T3];
 }
 
 /**************************
@@ -577,11 +593,14 @@ void Get_ImT3(const float *ImInputData, float *OutputData, unsigned int Num)
 *
 *
 ***************************/
-void Get_ImT4(const float *ImInputData, float *OutputData, unsigned int Num)
+void Get_ImT4(const float *ImInputData, float *OutputData, unsigned int Num, float HuoerImax)
 {
 	unsigned int T4;
 	Get_T4(ImInputData, &T4, Num);
-	*OutputData = ImInputData[T4];
+		MovingAvgFilter(ImInputData, Contain2, Num, 61);
+
+	CalcIm(ImInputData, Contain1, Num, HuoerImax);
+	*OutputData = Contain1[T4];
 }
 
 
@@ -596,20 +615,20 @@ void OpenDataShow(const float *DistanceInputData, const float *ADInputData, unsi
 	CalcIm(ADInputData, Contain2, Num, HuoerImax);
 	
 	GetDistanceEndTime(DistanceInputData, &(OpenGate->DistanceEndTime), Num, Open);
-	GetOpenTime(ADInputData, DistanceInputData, &(OpenGate->OpenTime), Num);
+	GetOpenCloseTime(ADInputData, DistanceInputData, &(OpenGate->OpenTime), Num, Open);
 	OpenOrCloseSpeed(DistanceInputData, &(OpenGate->OpenSpeed), Num, Open);
 	ReboundHeight(DistanceInputData, &(OpenGate->ReboundHeight), Num);
 	OpenOrCloseMmtSpeed(DistanceInputData, &(OpenGate->OpenMmtSpeed), Num, Open);
-	Get_T0(Contain2, &(OpenGate->T0), Num, Open);
-	Get_T1(Contain2, &(OpenGate->T1), Num);
-	Get_T2(Contain2, &(OpenGate->T2), Num);
-	Get_T3(Contain2, &(OpenGate->T3), Num);
-	Get_T4(Contain2, &(OpenGate->T4), Num);
-	Get_T5(Contain2, &(OpenGate->T5), Num);
-	Get_ImT1(Contain2, &(OpenGate->Get_ImT1), Num);
-	Get_ImT2(Contain2, &(OpenGate->Get_ImT2), Num);
-	Get_ImT3(Contain2, &(OpenGate->Get_ImT3), Num);
-	Get_ImT4(Contain2, &(OpenGate->Get_ImT4), Num);
+	Get_T0(ADInputData, &(OpenGate->T0), Num, Open);
+	Get_T1(ADInputData, &(OpenGate->T1), Num);
+	Get_T2(ADInputData, &(OpenGate->T2), Num);
+	Get_T3(ADInputData, &(OpenGate->T3), Num);
+	Get_T4(ADInputData, &(OpenGate->T4), Num);
+	Get_T5(ADInputData, &(OpenGate->T5), Num);
+	Get_ImT1(Contain2, &(OpenGate->Get_ImT1), Num, HuoerImax);
+	Get_ImT2(Contain2, &(OpenGate->Get_ImT2), Num, HuoerImax);
+	Get_ImT3(Contain2, &(OpenGate->Get_ImT3), Num, HuoerImax);
+	Get_ImT4(Contain2, &(OpenGate->Get_ImT4), Num, HuoerImax);
 }
 
 /**************************
@@ -623,21 +642,21 @@ void CloseDataShow(const float *DistanceInputData, const float *ADInputData, uns
 	CalcIm(ADInputData, Contain2, Num, HuoerImax);
 	
 	GetDistanceEndTime(DistanceInputData, &(CloseGate->DistanceEndTime), Num, Close);
-	GetCloseTime(ADInputData, DistanceInputData, &(CloseGate->CloseTime), Num);
+	GetOpenCloseTime(ADInputData, DistanceInputData, &(CloseGate->CloseTime), Num, Close);
 	GetTotalDistance(DistanceInputData, &(CloseGate->CloseTotalDistance), Num);
 	GetKaiDistance(DistanceInputData, &(CloseGate->CloseKaiDistance), Num, Close);
 	OpenOrCloseSpeed(DistanceInputData, &(CloseGate->CloseSpeed), Num, Close);
 	OpenOrCloseMmtSpeed(DistanceInputData, &(CloseGate->CloseMmtSpeed), Num, Close);
 	CloseOverrush(DistanceInputData, &(CloseGate->CloseOverrush), Num);
 	Get_T0(ADInputData, &(CloseGate->T0), Num, Close);
-	Get_T1(Contain2, &(CloseGate->T1), Num);
-	Get_T2(Contain2, &(CloseGate->T2), Num);
-	Get_T3(Contain2, &(CloseGate->T3), Num);
-	Get_T4(Contain2, &(CloseGate->T4), Num);
-	Get_T5(Contain2, &(CloseGate->T5), Num);
-	Get_ImT1(Contain2, &(CloseGate->Get_ImT1), Num);
-	Get_ImT2(Contain2, &(CloseGate->Get_ImT2), Num);
-	Get_ImT3(Contain2, &(CloseGate->Get_ImT3), Num);
-	Get_ImT4(Contain2, &(CloseGate->Get_ImT4), Num);
+	Get_T1(ADInputData, &(CloseGate->T1), Num);
+	Get_T2(ADInputData, &(CloseGate->T2), Num);
+	Get_T3(ADInputData, &(CloseGate->T3), Num);
+	Get_T4(ADInputData, &(CloseGate->T4), Num);
+	Get_T5(ADInputData, &(CloseGate->T5), Num);
+	Get_ImT1(Contain2, &(CloseGate->Get_ImT1), Num, HuoerImax);
+	Get_ImT2(Contain2, &(CloseGate->Get_ImT2), Num, HuoerImax);
+	Get_ImT3(Contain2, &(CloseGate->Get_ImT3), Num, HuoerImax);
+	Get_ImT4(Contain2, &(CloseGate->Get_ImT4), Num, HuoerImax);
 }
 

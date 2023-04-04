@@ -748,7 +748,7 @@ I (.\Library\stm32f10x_usart.h)(0x4D783BB4)
 I (.\Library\stm32f10x_wwdg.h)(0x4D783BB4)
 I (.\Library\misc.h)(0x4D783BB4)
 F (.\Library\stm32f10x_wwdg.h)(0x4D783BB4)()
-F (.\User\main.c)(0x6426BD8A)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Start -I .\User -I .\Library-I.\RTE\_Target_1-IF:\Keil525\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\Include-IF:\Keil525\ARM\CMSIS\Include-D__UVISION_VERSION="525" -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+F (.\User\main.c)(0x642AA242)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Start -I .\User -I .\Library-I.\RTE\_Target_1-IF:\Keil525\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\Include-IF:\Keil525\ARM\CMSIS\Include-D__UVISION_VERSION="525" -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
 I (.\Start\stm32f10x.h)(0x4D783CB4)
 I (.\Start\core_cm3.h)(0x4D523B58)
 I (F:\Keil525\ARM\ARMCC\include\stdint.h)(0x599ECD2E)
@@ -777,7 +777,7 @@ I (.\Library\stm32f10x_tim.h)(0x4D783BB4)
 I (.\Library\stm32f10x_usart.h)(0x4D783BB4)
 I (.\Library\stm32f10x_wwdg.h)(0x4D783BB4)
 I (.\Library\misc.h)(0x4D783BB4)
-I (User\Calculate.h)(0x6426B750)
+I (User\Calculate.h)(0x642AA05D)
 I (F:\Keil525\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
 F (.\User\stm32f10x_conf.h)(0x4D99A59E)()
 F (.\User\stm32f10x_it.c)(0x4D99A59E)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Start -I .\User -I .\Library-I.\RTE\_Target_1-IF:\Keil525\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\Include-IF:\Keil525\ARM\CMSIS\Include-D__UVISION_VERSION="525" -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o .\objects\stm32f10x_it.o --omf_browse .\objects\stm32f10x_it.crf --depend .\objects\stm32f10x_it.d)
@@ -811,6 +811,7 @@ I (.\Library\stm32f10x_usart.h)(0x4D783BB4)
 I (.\Library\stm32f10x_wwdg.h)(0x4D783BB4)
 I (.\Library\misc.h)(0x4D783BB4)
 F (.\User\stm32f10x_it.h)(0x4D99A59E)()
-F (.\User\Calculate.c)(0x6426BD2A)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Start -I .\User -I .\Library-I.\RTE\_Target_1-IF:\Keil525\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\Include-IF:\Keil525\ARM\CMSIS\Include-D__UVISION_VERSION="525" -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o .\objects\calculate.o --omf_browse .\objects\calculate.crf --depend .\objects\calculate.d)
-I (User\Calculate.h)(0x6426B750)
-F (.\User\Calculate.h)(0x6426B750)()
+F (.\User\Calculate.c)(0x642AA648)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Start -I .\User -I .\Library-I.\RTE\_Target_1-IF:\Keil525\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\Include-IF:\Keil525\ARM\CMSIS\Include-D__UVISION_VERSION="525" -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o .\objects\calculate.o --omf_browse .\objects\calculate.crf --depend .\objects\calculate.d)
+I (F:\Keil525\ARM\ARMCC\include\string.h)(0x599ECD2C)
+I (User\Calculate.h)(0x642AA05D)
+F (.\User\Calculate.h)(0x642AA05D)()

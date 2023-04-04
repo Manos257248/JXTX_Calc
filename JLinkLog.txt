@@ -1,0 +1,5 @@
+T3BE0 024:498 SEGGER J-Link V6.30h Log File (0000ms, 19224ms total)
+T3BE0 024:498 DLL Compiled: Mar 16 2018 18:02:51 (0000ms, 19224ms total)
+T3BE0 024:498 Logging started @ 2023-04-03 10:11 (0000ms, 19224ms total)
+T3BE0 024:498 JLINK_SetWarnOutHandler(...) (0000ms, 19224ms total)
+T3BE0 024:498 JLINK_OpenEx(...)
